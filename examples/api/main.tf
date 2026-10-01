@@ -1,5 +1,5 @@
 module "api" {
-  source  = "codectl/aadapp/azure"
+  source  = "codectl/app/azuread"
   version = "~> 1.0"
 
   registration = {
@@ -31,7 +31,7 @@ module "api" {
 }
 
 module "client" {
-  source  = "codectl/aadapp/azure"
+  source  = "codectl/app/azuread"
   version = "~> 1.0"
 
   registration = {

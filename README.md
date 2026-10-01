@@ -33,7 +33,7 @@ The following requirements are needed by this module:
 
 The following providers are used by this module:
 
-- <a name="provider_azuread"></a> [azuread](#provider\_azuread) (3.8.0)
+- <a name="provider_azuread"></a> [azuread](#provider\_azuread) (~> 3.0)
 
 ## Resources
 
@@ -58,10 +58,10 @@ object({
     display_name                   = string
     description                    = optional(string)
     sign_in_audience               = optional(string, "AzureADMyOrg")
-    identifier_uris                = optional(set(string), [])
+    identifier_uris                = optional(set(string))
     group_membership_claims        = optional(set(string))
     owners                         = optional(set(string))
-    device_only_auth_enabled       = optional(bool, false)
+    device_only_auth_enabled       = optional(bool)
     fallback_public_client_enabled = optional(bool, false)
     logo_image                     = optional(string)
     marketing_url                  = optional(string)
@@ -74,18 +74,15 @@ object({
     tags                           = optional(set(string))
     template_id                    = optional(string)
     terms_of_service_url           = optional(string)
-
     password = optional(object({
       display_name = string
       end_date     = optional(string)
       start_date   = optional(string)
     }))
-
     api = optional(object({
       known_client_applications      = optional(set(string))
       mapped_claims_enabled          = optional(bool, false)
       requested_access_token_version = optional(number, 1)
-
       oauth2_permission_scopes = optional(map(object({
         id                         = string
         admin_consent_description  = string
@@ -97,7 +94,6 @@ object({
         value                      = optional(string)
       })), {})
     }))
-
     app_roles = optional(map(object({
       allowed_member_types = list(string)
       description          = string
@@ -106,14 +102,12 @@ object({
       enabled              = optional(bool)
       value                = optional(string)
     })), {})
-
     feature_tags = optional(object({
       custom_single_sign_on = optional(bool, false)
       enterprise            = optional(bool, false)
       gallery               = optional(bool, false)
       hide                  = optional(bool, false)
     }))
-
     optional_claims = optional(object({
       access_token = optional(map(object({
         name                  = optional(string)
@@ -134,11 +128,9 @@ object({
         source                = optional(string)
       })), {})
     }))
-
     public_client = optional(object({
       redirect_uris = optional(set(string), [])
     }))
-
     required_resource_accesses = optional(map(object({
       resource_app_id = string
       resource_accesses = map(object({
@@ -146,11 +138,9 @@ object({
         type = string
       }))
     })), {})
-
     single_page_application = optional(object({
       redirect_uris = optional(set(string), [])
     }))
-
     web = optional(object({
       homepage_url  = optional(string)
       logout_url    = optional(string)
@@ -160,12 +150,10 @@ object({
         id_token_issuance_enabled     = optional(bool)
       }))
     }))
-
     pre_authorized_applications = optional(map(object({
       authorized_client_id = string
       permission_ids       = set(string)
     })), {})
-
     service_principal = optional(object({
       account_enabled               = optional(bool)
       alternative_names             = optional(set(string))
@@ -178,14 +166,12 @@ object({
       preferred_single_sign_on_mode = optional(string)
       tags                          = optional(set(string))
       use_existing                  = optional(bool, false)
-
       feature_tags = optional(object({
         custom_single_sign_on = optional(bool, false)
         enterprise            = optional(bool, false)
         gallery               = optional(bool, false)
         hide                  = optional(bool, false)
       }))
-
       saml_single_sign_on = optional(object({
         relay_state = optional(string)
       }))

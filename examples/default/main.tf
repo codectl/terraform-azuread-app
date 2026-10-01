@@ -1,5 +1,5 @@
 module "app_registration" {
-  source  = "codectl/aadapp/azure"
+  source  = "codectl/app/azuread"
   version = "~> 1.0"
 
   registration = {
